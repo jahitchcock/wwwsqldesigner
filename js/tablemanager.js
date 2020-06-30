@@ -125,9 +125,16 @@ SQL.TableManager.prototype.click = function(e) { /* finish adding new table */
 		var x = e.clientX + scroll[0];
 		var y = e.clientY + scroll[1];
 		newtable = this.owner.addTable(_("newtable"),x,y);
-		var r = newtable.addRow("id",{ai:true});
-		var k = newtable.addKey("PRIMARY","");
+		var r = newtable.addRow("id",{ai:true,nll:false});
+		var r2 = newtable.addRow("create_date",{nll:false});	
+		
+		var k = newtable.addKey("PRIMARY","");		
+		var i = newtable.addKey("INDEX","");
 		k.addRow(r);
+		i.addRow(r2)
+		newtable.addRow("created_by",{nll:false});
+		newtable.addRow("modified_date",{nll:false});
+		newtable.addRow("modified_by",{nll:false});
 	}
 	this.select(newtable);
 	this.owner.rowManager.select(false);

@@ -3,7 +3,8 @@ SQL.Key = function(owner, type, name) {
 	this.owner = owner;
 	this.rows = [];
 	this.type = type || "INDEX";
-	this.name = name || "";
+	var rand = Math.floor((Math.random()) * 0x10000).toString(16)
+	this.name = name || type + "_"+ rand;
 	SQL.Visual.apply(this);
 }
 SQL.Key.prototype = Object.create(SQL.Visual.prototype);
